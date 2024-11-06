@@ -1,9 +1,9 @@
-﻿.hidden{
-    display: none;
+﻿﻿.hidden {
+    visibility:collapse;
 }
 
-.flex{
-    display:flex;
+.flex {
+    display: flex;
 }
 
 * {
@@ -113,7 +113,7 @@
                     justify-content: center;
                     align-items: center;
                     font-size: 12px;
-                    text-align: center; 
+                    text-align: center;
                 }
 
 /* End of header */
@@ -266,5 +266,3 @@
         text-decoration: none;
         color: white;
     }
-
-/* End of footer */

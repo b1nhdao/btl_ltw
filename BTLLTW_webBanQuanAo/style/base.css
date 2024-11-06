@@ -6,6 +6,10 @@
     color: lime;
 }
 
+.hidden{
+    display:none
+}
+
 body {
 }
 .col-1 {
@@ -59,4 +63,99 @@ body {
 .container {
     display: flex;
     justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column; /* Xếp chồng các phần tử theo cột */
+        align-items: flex-start;
+        width:100%;
+    }
+        .header .container .logo {
+            margin: 0 auto; /* Canh giữa logo */
+            text-align: center;
+        }
+        .header .container .menu  {
+            display:flex;
+            flex-direction: column; /* Menu dọc */
+            width: 100%;
+        }
+        .header .container .menu ul {
+            display: flex;
+            flex-direction: column; /* Menu dọc */
+            width: 100%;
+        }
+            .header .container .menu ul li {
+                width: 100%; 
+                padding: 15px 0;
+                text-align: center;
+            }  
+        .header .container .logo a {
+            margin-left: 25px;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center;
+        }
+        .header .container .action {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin:0;
+        }
+            .header .container .action ul {
+                display: flex;
+                
+                list-style: none;
+                justify-content: center;
+                width: 100%;
+            }
+            .header .container .action ul li {
+               margin:0;
+            }
+
+                .header .container .action ul li a {
+                    display: flex;
+                    text-align: center;
+                }
+    
+    .body {
+        margin: 0;
+        width: 100%;
+    }
+    .body .container {
+        display: flex;
+        flex-direction: column; /* Xếp chồng các phần tử theo cột */
+        align-items: center;
+    }
+        .body .container .sidebar {
+            width: 100%;
+        }
+        .body .container .content {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .body .container .item {
+            width:100%;
+        }
+
+        .body .container .info-customer {
+            width:100%;
+            margin:50px;
+        }
+        .body .container .cart {
+            width: 100%;
+            margin:50px;
+        }
+
+        .main-content .container .body {
+            margin:auto;
+        }
+
 }

@@ -94,6 +94,7 @@ namespace BTLLTW_webBanQuanAo
             Response.Redirect("cart.aspx");
         }
 
+
         //btn_cart click
         protected void btn_cart_OnClick(object sender, EventArgs e)
         {

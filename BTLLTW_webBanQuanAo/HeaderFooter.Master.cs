@@ -18,13 +18,15 @@ namespace BTLLTW_webBanQuanAo
                 account.Attributes.Add("class", "flex");
                 greeting.InnerHtml = "Xin chào " + Session["username"].ToString() + " | </p>";
                 login.Attributes.Add("class", "hidden");
-                
+
                 if (Session["role"].ToString() == "admin")
                 {
                     management.Attributes.Remove("class");
                 }
             }
+
             cart_number.InnerText = (Session["quantity"] != null) ? Session["quantity"].ToString() : "0";
+            
         }
     }
 }

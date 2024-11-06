@@ -18,7 +18,6 @@
         }
 
         .body .container .item {
-            display: flex;
             flex-direction: column;
             width: calc(25% - 20px);
         }

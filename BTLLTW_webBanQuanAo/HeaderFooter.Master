@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HeaderFooter.master.cs" Inherits="BTLLTW_webBanQuanAo.HeaderFooter" %>
+﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HeaderFooter.master.cs" Inherits="BTLLTW_webBanQuanAo.HeaderFooter" %>
 
 <!DOCTYPE html>
 
@@ -147,5 +147,5 @@
                     </div>
                 </div>
             </div>
-</body>
+    </body>
 </html>

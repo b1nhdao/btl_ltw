@@ -153,7 +153,7 @@ namespace BTLLTW_webBanQuanAo
                 }
             }
 
-            if(category == "sale")
+            if (category == "sale")
             {
                 foreach (Item item in list)
                 {
@@ -179,7 +179,7 @@ namespace BTLLTW_webBanQuanAo
         {
             string html = "";
             html += "<div class='item'>" +
-                        "<a href='ctsp.aspx?id="+item.Id+"'>" +
+                        "<a href='ctsp.aspx?id=" + item.Id + "'>" +
                             "<img src='" + item.Image + "' alt=''>" +
                         "</a>" +
                         "<div class='item-info'>" +
