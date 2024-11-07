@@ -26,7 +26,6 @@ namespace BTLLTW_webBanQuanAo
             }
 
             cart_number.InnerText = (Session["quantity"] != null) ? Session["quantity"].ToString() : "0";
-            
         }
     }
 }

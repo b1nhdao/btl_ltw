@@ -12,6 +12,7 @@ namespace BTLLTW_webBanQuanAo
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Abandon();
+            List<ItemCart> list = (List<ItemCart>)Application["itemCart"];
             Response.Redirect("index.aspx");
         }
     }

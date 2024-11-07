@@ -15,8 +15,15 @@ namespace BTLLTW_webBanQuanAo
         {
             if (!IsPostBack)
             {
-                BindCart();
-                hiengiatienoday.InnerHtml = generatePriceCart();
+                if ((string)Session["username"] == null)
+                {
+                    Response.Redirect("login.aspx");
+                }
+                else
+                {
+                    BindCart();
+                    hiengiatienoday.InnerHtml = generatePriceCart();
+                }
             }
         }
 
@@ -45,24 +52,37 @@ namespace BTLLTW_webBanQuanAo
 
         private void BindCart()
         {
+            string userName = (string)Session["username"];
+            Response.Write(userName);
             List<ItemCart> list = (List<ItemCart>)Application["itemCart"];
+            List<ItemCart> newList = new List<ItemCart>();
             foreach (ItemCart item in list)
             {
-                item.CategoryName = renderCategory(item);
-
-                item.price = item.final_price * item.quantity;
+                if (item.userName == userName)
+                {
+                    newList.Add(item);
+                    item.price = item.final_price * item.quantity;
+                }
+                else
+                {
+                    continue;
+                }
             }
-            ListViewCart.DataSource = list;
+            ListViewCart.DataSource = newList;
             ListViewCart.DataBind();
         }
 
         private string generatePriceCart()
         {
+            string userName = (string)Session["username"];
             int final_price = 0;
             List<ItemCart> listCart = (List<ItemCart>)Application["ItemCart"];
             foreach (ItemCart item in listCart)
             {
-                final_price += (item.Final_price * item.Quantity);
+                if (item.userName == userName) 
+                {
+                    final_price += (item.Final_price * item.Quantity);
+                }
             }
             string html = "";
             html += "<div class='price-cart'>" +
@@ -98,6 +118,7 @@ namespace BTLLTW_webBanQuanAo
 
         protected void ListViewCart_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            string userName = (string)Session["username"];
             if (e.CommandName == "DeleteItem")
             {
                 int itemCartID = int.Parse(e.CommandArgument.ToString());
@@ -119,7 +140,14 @@ namespace BTLLTW_webBanQuanAo
                 int currentQuantity = 0;
                 foreach (ItemCart item in itemCart)
                 {
-                    currentQuantity += item.quantity;
+                    if(item.userName == userName)
+                    {
+                        currentQuantity += item.quantity;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 Session["quantity"] = currentQuantity;
                 Response.Redirect(Request.RawUrl);

@@ -109,6 +109,9 @@
                                 <div class="price" style="margin-right: 10px;">
                                     <%# Eval("price") %> đ
                                 </div>
+                                <div class="hidden">
+                                    <%# Eval("userName") %>
+                                </div>
                             </div>
                             <div class="size">Size : <%# Eval("size") %></div>
                             <div class="delete">

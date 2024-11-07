@@ -12,9 +12,10 @@ namespace BTLLTW_webBanQuanAo
         protected void Page_Load(object sender, EventArgs e)
         {
             List<User> users = (List<User>)Application["Users"];
+            List<ItemCart> cart = (List<ItemCart>)Application["itemCart"];
             string username = Request.Form["username"];
             string password = Request.Form["passowrd"];
-
+            int count = 0;
             if (username != null && password != null)
             {
                 foreach (User user in users)
@@ -24,6 +25,14 @@ namespace BTLLTW_webBanQuanAo
                         Session["username"] = username;
                         Session["role"] = user.Role;
                         Response.Redirect("index.aspx");
+                        foreach (ItemCart cartItem in cart)
+                        {
+                            if(cartItem.UserName == username)
+                            {
+                                count++;
+                            };
+                        }
+                        Session["quantity"] = count.ToString();
                     }
                     else if (username == user.Taikhoan && password != user.Matkhau)
                     {

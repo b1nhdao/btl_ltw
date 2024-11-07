@@ -68,7 +68,13 @@ namespace BTLLTW_webBanQuanAo
 
         protected void btn_buyNow_OnClick(object sender, EventArgs e)
         {
+            string userName = (string)Session["username"];
             // Khởi tạo một giỏ hàng mới
+            if (userName == null)
+            {
+                Response.Write("<script>'Bạn cần đăng nhập trước ! </script>'");
+                return;
+            }
             List<ItemCart> itemCart = new List<ItemCart>();
 
             // Lấy id sản phẩm từ QueryString
@@ -84,7 +90,7 @@ namespace BTLLTW_webBanQuanAo
 
             int itemCartID = 99; 
 
-            ItemCart itemTemp = new ItemCart(itemCartID, item.Id, item.Name, item.Image, item.Category, item.Price, item.Final_price, item.Description, size, quantity);
+            ItemCart itemTemp = new ItemCart(itemCartID, item.Id, item.Name, item.Image, item.Category, item.Price, item.Final_price, item.Description, size, quantity, userName);
 
             itemCart.Add(itemTemp);
 
@@ -99,6 +105,12 @@ namespace BTLLTW_webBanQuanAo
         protected void btn_cart_OnClick(object sender, EventArgs e)
         {
             // Khởi tạo giỏ hàng nếu chưa có
+            string userName = (string)Session["username"];
+            if (userName == null)
+            {
+                Response.Write("<script>alert('Bạn cần đăng nhập vào trước !');</script>");
+                return;
+            }
             List<ItemCart> itemCart = (List<ItemCart>)Application["itemCart"] ?? new List<ItemCart>();
             Application["itemCart"] = itemCart;
 
@@ -117,7 +129,7 @@ namespace BTLLTW_webBanQuanAo
             int itemCartID = (int?)Application["itemCartID"] ?? 1;
 
             // Tạo sản phẩm mới và tăng itemCartID
-            ItemCart itemTemp = new ItemCart(itemCartID, item.Id, item.Name, item.Image, item.Category, item.Price, item.Final_price, item.Description, size, quantity);
+            ItemCart itemTemp = new ItemCart(itemCartID, item.Id, item.Name, item.Image, item.Category, item.Price, item.Final_price, item.Description, size, quantity, userName);
             itemCartID++;
 
             // Cập nhật lại itemCartID trong Application
