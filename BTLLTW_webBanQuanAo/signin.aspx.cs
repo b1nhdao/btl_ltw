@@ -17,7 +17,10 @@ namespace BTLLTW_webBanQuanAo
                 string username = Request.Form["username"];
                 string password = Request.Form["password"];
                 string re_password = Request.Form["re-password"];
-
+                string hoten = Request.Form["hoten"];
+                string ngaysinh = Request.Form["ngaysinh"];
+                string lop = Request.Form["lop"];
+                
                 // Lấy danh sách người dùng từ Application (giả sử danh sách này lưu trữ ở đây)
                 List<User> users = (List<User>)Application["Users"];
 
@@ -30,17 +33,9 @@ namespace BTLLTW_webBanQuanAo
                     return;
                 }
 
-                // Kiểm tra mật khẩu nhập lại
-                if (password != re_password)
-                {
-                    notification.Attributes["class"] = "red";
-                    notification.InnerHtml = "Xác nhận lại mật khẩu không khớp!";
-                    return;
-                }
-
                 // Nếu hợp lệ, thêm tài khoản mới vào danh sách
                 int nextUserId = (int)Application["nextUserId"];
-                User newUser = new User(nextUserId, username, password, "customer");
+                User newUser = new User(nextUserId, username, password, "customer", hoten, ngaysinh, lop);
                 users.Add(newUser);
 
                 // Tăng giá trị nextUserId và lưu lại
@@ -49,13 +44,6 @@ namespace BTLLTW_webBanQuanAo
 
                 notification.Attributes["class"] = "green";
                 notification.InnerHtml = "Đăng ký thành công!";
-
-                //Response.Clear();
-                //Response.ContentType = "application/json";
-                //JavaScriptSerializer serializer = new JavaScriptSerializer();
-                //string json = serializer.Serialize(users);
-                //Response.Write(json);
-                //Response.End();
 
             }
         }

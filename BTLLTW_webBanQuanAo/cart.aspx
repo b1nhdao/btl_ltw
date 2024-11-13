@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="style/base.css">
 <link rel="stylesheet" href="style/styleIndex.css">
 <link rel="stylesheet" href="style/styleCart.css">
+
+
+
 <div class="body">
     <div class="container">
         <div class="left"></div>
@@ -123,7 +126,7 @@
             </asp:ListView>
             <div id="hiengiatienoday" runat="server"></div>
                 <br>
-                <button type="button" class="purchase">
+                <button type="button" class="purchase" runat="server" onserverclick="btn_purchaseOnclick">
                     Thanh toán
                 </button>
         </div>

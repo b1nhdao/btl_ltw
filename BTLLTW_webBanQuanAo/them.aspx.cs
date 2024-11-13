@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 
@@ -15,10 +17,13 @@ namespace BTLLTW_webBanQuanAo
         protected void Page_Load(object sender, EventArgs e)
         {
             List<Item> items = (List<Item>)Application["itemList"];
+            int count = items.Count;
+            int maxId = items.Count > 0 ? items.Max(item => item.Id) : 0;
+
 
             if (string.IsNullOrEmpty(Request.Form["id"]))
             {
-                inputID = items.Count + 1; // Tăng ID
+                inputID = maxId + 1;  // Sử dụng ID cao nhất + 1
                 inputName = Request.Form["name"];
                 inputCategory = Convert.ToInt32(Request.Form["category"]);
                 inputPrice = Convert.ToInt32(Request.Form["price"]);
@@ -41,6 +46,29 @@ namespace BTLLTW_webBanQuanAo
                     //Response.Write(inputImage);
                 }
             }
+            if (Request.Form["id"] != null)
+            {
+                foreach(Item item in items)
+                {
+                    if(item.id == Int32.Parse(Request.Form["id"]))
+                    {
+                        item.Name = Request.Form["name"];
+                        item.Category = Convert.ToInt32(Request.Form["category"]);
+                        item.Price = Convert.ToInt32(Request.Form["price"]);
+                        item.Final_price = Convert.ToInt32(Request.Form["final_price"]);
+                        item.Description = Request.Form["describe"];
+
+                        if (Request.Files["image"] != null && Request.Files["image"].ContentLength > 0)
+                        {
+                            saveFile(Request.Files["image"], Server.MapPath("~/resource/"));
+                            item.Image = "resource/" + fileName;
+                        }
+
+                        Application["itemList"] = items;
+                        Response.Redirect("them.aspx");
+                    }
+                }
+            }
 
             // Hiển thị danh sách sản phẩm
             DisplayItems(items);
@@ -54,6 +82,17 @@ namespace BTLLTW_webBanQuanAo
                 price.Value = Request.QueryString["price"];
                 final_price.Value = Request.QueryString["final_price"];
                 describe.Value = Request.QueryString["describe"];
+            }
+
+            int deletesp = Convert.ToInt32(Request.QueryString["delete"]);
+            for (int i = items.Count - 1; i >= 0; i--)
+            {
+                if (items[i].Id == deletesp)
+                {
+                    items.RemoveAt(i);
+                    Response.Redirect("them.aspx");
+
+                }
             }
         }
 

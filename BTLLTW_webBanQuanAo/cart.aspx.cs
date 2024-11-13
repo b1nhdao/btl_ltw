@@ -38,6 +38,23 @@ namespace BTLLTW_webBanQuanAo
             else return "Đồ trẻ em";
         }
 
+        protected void btn_purchaseOnclick(object sender, EventArgs e)
+        {
+            Response.Write("<script>alert('Cảm ơn bạn đã mua hàng !');</script>");
+
+            // Lấy danh sách các sản phẩm trong giỏ hàng từ Application
+            List<ItemCart> items = (List<ItemCart>)Application["itemCart"];
+
+            // Lọc ra các sản phẩm không phải của người dùng hiện tại
+            string currentUser = (string)Session["username"];
+            items = items.Where(item => item.userName != currentUser).ToList();
+
+            // Cập nhật lại danh sách vào Application
+            Application["itemCart"] = items;
+
+            Response.Redirect("index.aspx");
+        }
+
         protected void btn_add_quantityOnClick(object sender, EventArgs e)
         {
             List<ItemCart> itemCarts = (List<ItemCart>)Application["itemCart"];
@@ -79,7 +96,7 @@ namespace BTLLTW_webBanQuanAo
             List<ItemCart> listCart = (List<ItemCart>)Application["ItemCart"];
             foreach (ItemCart item in listCart)
             {
-                if (item.userName == userName) 
+                if (item.userName == userName)
                 {
                     final_price += (item.Final_price * item.Quantity);
                 }
@@ -140,7 +157,7 @@ namespace BTLLTW_webBanQuanAo
                 int currentQuantity = 0;
                 foreach (ItemCart item in itemCart)
                 {
-                    if(item.userName == userName)
+                    if (item.userName == userName)
                     {
                         currentQuantity += item.quantity;
                     }

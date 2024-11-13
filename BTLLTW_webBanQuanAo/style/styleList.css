@@ -29,3 +29,9 @@
             .body .container .item .item-info {
                 margin-top: 10px;
             }
+
+@media (max-width: 768px) {
+    .body .container .item {
+        width: calc(50% - 10px); /* Chia đôi độ rộng */
+    }
+}

@@ -89,17 +89,22 @@ namespace BTLLTW_webBanQuanAo
 
             Application["itemList"] = itemList;
 
+            // object: List<Item> 
+            //Application["itemList"] : 51 items. Count();
+
+
             List<ItemCart> itemCarts = new List<ItemCart>();
             Application["itemCart"] = itemCarts;
 
 
 
             List<User> users = new List<User>();
-            users.Add(new User(1, "admin", "admin123", "admin"));
-            users.Add(new User(2, "shaoang", "dasdas", "admin"));
+            users.Add(new User(1, "admin", "admin123", "admin", "A", "A", "A"));
+            users.Add(new User(2, "shaoang", "dasdas", "admin", "A", "A" , "A"));
             Application["Users"] = users;
 
             Application["nextUserId"] = 3;
+            Application["itemCount"] = itemList.Count;
 
         }
     }

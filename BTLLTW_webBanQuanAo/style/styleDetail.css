@@ -129,3 +129,12 @@ button {
         margin-left: 20px;
         margin-top: 8px;
     }
+
+@media (max-width: 768px) {
+    .body{
+        margin:0;
+    }
+    .col-6{
+        width: 95%
+    }
+}

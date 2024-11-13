@@ -158,3 +158,8 @@ body {
             margin:auto;
         }
 }
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}

@@ -10,15 +10,26 @@ namespace BTLLTW_webBanQuanAo
         private string username, password;
         private string role;
         private int id;
+        private string hoten;
+        private string ngaysinh;
+        private string lop;
 
-        public User(int id, string taikhoan, string matkhau, string role)
+        public User(int id, string taikhoan, string matkhau, string role, string hoten, string ngaysinh, string lop)
         {
 
             this.username = taikhoan;
             this.password = matkhau;
             this.role = role;
             this.id = id;
+            this.hoten = hoten;
+            this.ngaysinh = ngaysinh;
+            this.lop = lop;
         }
+
+        public string HoTen { get => hoten; set => hoten = value; }
+        public string Ngaysinh { get => ngaysinh; set => ngaysinh = value; }
+
+        public string Lop { get => lop; set => lop = value; }
 
         public int Id
         {
